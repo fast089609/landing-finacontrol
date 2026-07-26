@@ -1,0 +1,77 @@
+---
+import FeatureCard from "./FeatureCard.astro";
+
+const ICON = {
+	wallet: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M21 7H5a2 2 0 00-2 2v9a2 2 0 002 2h16v-6" /><path d="M16 12h5v3h-5a1.5 1.5 0 010-3z" /><path d="M3 7V5a2 2 0 012-2h12" /></svg>`,
+	swap: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M7 10l-4-4 4-4M3 6h13a4 4 0 014 4v1" /><path d="M17 14l4 4-4 4M21 18H8a4 4 0 01-4-4v-1" /></svg>`,
+	tag: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M20.59 13.41L11 3.83A2 2 0 009.59 3.24L3.24 9.59A2 2 0 003.24 11l9.58 9.58a2 2 0 002.83 0l4.94-4.94a2 2 0 000-2.23z" /><circle cx="8" cy="8" r="1.3" /></svg>`,
+	chart: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M3 3v18h18" /><path d="M18 17V9M12 17V5M6 17v-4" /></svg>`,
+	handshake: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M8 12l3 3 8-8" /><path d="M2 12l4-4 3 3-4 4z" /><path d="M13 7l4-4 4 4-3 3" /><path d="M6 15l2 2a2 2 0 002.8 0l.2-.2" /></svg>`,
+	layers: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M12 2 2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>`,
+	shield: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z" /></svg>`,
+	moon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>`,
+};
+
+const features: { icon: string; title: string; description: string; accent: "primary" | "secondary" | "income" | "expense" | "warning" }[] = [
+	{
+		icon: ICON.wallet,
+		title: "Cuentas y monedas múltiples",
+		description: "Administra todas tus cuentas —efectivo, bancos, tarjetas— en distintas monedas y con conversión automática a tu moneda principal.",
+		accent: "primary",
+	},
+	{
+		icon: ICON.swap,
+		title: "Ingresos, gastos y transferencias",
+		description: "Registra movimientos en segundos y mueve dinero entre cuentas sin perder el rastro de cada centavo.",
+		accent: "secondary",
+	},
+	{
+		icon: ICON.tag,
+		title: "Categorías personalizadas",
+		description: "Organiza cada movimiento con categorías propias e íconos, para entender de un vistazo en qué se te va el dinero.",
+		accent: "warning",
+	},
+	{
+		icon: ICON.chart,
+		title: "Reportes visuales",
+		description: "Gráficos de dona y de tendencia que traducen tus finanzas en decisiones, no solo en números.",
+		accent: "income",
+	},
+	{
+		icon: ICON.handshake,
+		title: "Préstamos y deudas",
+		description: "Sigue préstamos con cronograma de pagos, estado (activo, parcial, saldado) y un gráfico de evolución de deuda en el tiempo.",
+		accent: "expense",
+	},
+	{
+		icon: ICON.layers,
+		title: "Compras en cuotas",
+		description: "Planifica y controla compras a plazos sin perder de vista cuánto te falta pagar cada mes.",
+		accent: "primary",
+	},
+	{
+		icon: ICON.shield,
+		title: "Respaldo y restauración",
+		description: "Exporta y restaura tu información localmente, siempre bajo tu control, sin depender de servidores externos.",
+		accent: "secondary",
+	},
+	{
+		icon: ICON.moon,
+		title: "Modo claro y oscuro nativo",
+		description: "La misma experiencia cuidada, de día o de noche, con un theme diseñado para ambos.",
+		accent: "warning",
+	},
+];
+---
+
+<section id="funciones" class="relative mx-auto max-w-6xl px-4 py-24 md:py-32">
+	<div class="reveal mx-auto mb-16 max-w-2xl text-center">
+		<span class="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-secondary">Funciones</span>
+		<h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">Todo lo que necesitas para dominar tus finanzas</h2>
+		<p class="mt-4 text-text-secondary">Una app, un código, todas tus cuentas — construida para quienes quieren claridad, no complicaciones.</p>
+	</div>
+
+	<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+		{features.map((f, i) => <FeatureCard icon={f.icon} title={f.title} description={f.description} accent={f.accent} delay={i * 60} />)}
+	</div>
+</section>

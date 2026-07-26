@@ -1,0 +1,63 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "FinaControl — Control financiero multiplataforma",
+	description = "FinaControl es la app de finanzas personales para cuentas, monedas, presupuestos, préstamos y reportes visuales. Disponible para Android y Linux, construida con Kotlin Multiplatform.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#0b0d17" />
+
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="apple-touch-icon" href="/assets/icon-192.png" />
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="/assets/icon-512.png" />
+
+		<title>{title}</title>
+
+		<script is:inline>
+			(function () {
+				const stored = localStorage.getItem("theme");
+				const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+				if (stored === "dark" || (!stored && prefersDark)) {
+					document.documentElement.classList.add("dark");
+				}
+			})();
+		</script>
+	</head>
+	<body class="bg-bg text-text-primary font-sans antialiased selection:bg-primary">
+		<slot />
+
+		<script>
+			const revealEls = document.querySelectorAll(".reveal");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					for (const entry of entries) {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("is-visible");
+							observer.unobserve(entry.target);
+						}
+					}
+				},
+				{ threshold: 0.15 },
+			);
+			for (const el of revealEls) observer.observe(el);
+		</script>
+	</body>
+</html>

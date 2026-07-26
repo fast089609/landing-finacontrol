@@ -1,0 +1,79 @@
+---
+import { PLATFORM_ICONS } from "../lib/platform-icons";
+
+const platforms = [
+	{ name: "Android", icon: "android" },
+	{ name: "Linux", icon: "linux" },
+	{ name: "Windows", icon: "windows" },
+	{ name: "macOS", icon: "apple" },
+];
+---
+
+<section class="relative overflow-hidden pt-40 pb-28 md:pt-48 md:pb-36">
+	<div class="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]"></div>
+
+	<div class="pointer-events-none absolute -left-32 top-10 size-96 animate-blob rounded-full bg-primary/30 blur-3xl"></div>
+	<div class="pointer-events-none absolute -right-24 top-40 size-96 animate-blob rounded-full bg-secondary/25 blur-3xl [animation-delay:-6s]"></div>
+	<div class="pointer-events-none absolute left-1/2 top-96 size-80 -translate-x-1/2 animate-blob rounded-full bg-income/20 blur-3xl [animation-delay:-11s]"></div>
+
+	<div class="relative mx-auto flex max-w-4xl flex-col items-center px-4 text-center">
+		<div class="reveal mb-8 inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface/60 px-4 py-1.5 text-xs font-medium text-text-secondary backdrop-blur-xl">
+			<span class="relative flex size-2">
+				<span class="absolute inline-flex size-full animate-ping rounded-full bg-income opacity-75"></span>
+				<span class="relative inline-flex size-2 rounded-full bg-income"></span>
+			</span>
+			v1.1.0 · Kotlin Multiplatform
+		</div>
+
+		<div class="reveal mb-8 [transition-delay:80ms]">
+			<img
+				src="/assets/icon-192.png"
+				alt="Ícono de FinaControl"
+				width="96"
+				height="96"
+				class="animate-float mx-auto size-24 rounded-3xl shadow-[0_20px_60px_-15px_rgba(124,92,252,0.5)] md:size-28"
+			/>
+		</div>
+
+		<h1 class="reveal font-display text-4xl font-bold leading-[1.05] tracking-tight [transition-delay:140ms] md:text-6xl lg:text-7xl">
+			Tus finanzas,
+			<span class="block bg-gradient-to-r from-primary via-secondary to-income bg-clip-text text-transparent">
+				bajo control total.
+			</span>
+		</h1>
+
+		<p class="reveal mt-6 max-w-2xl text-balance text-lg text-text-secondary [transition-delay:200ms] md:text-xl">
+			FinaControl centraliza cuentas, monedas, presupuestos, préstamos y reportes visuales
+			en una sola app rápida y privada — sin depender de la nube.
+		</p>
+
+		<div class="reveal mt-10 flex flex-col items-center gap-4 [transition-delay:260ms] sm:flex-row">
+			<a
+				href="#descargas"
+				class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white transition hover:shadow-[0_0_36px_-6px_var(--primary)]"
+			>
+				Descargar FinaControl
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 transition group-hover:translate-y-0.5">
+					<path d="M12 5v14M19 12l-7 7-7-7" />
+				</svg>
+			</a>
+			<a
+				href="#funciones"
+				class="inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface/60 px-7 py-3.5 text-base font-semibold text-text-primary backdrop-blur-xl transition hover:border-primary/50"
+			>
+				Ver funciones
+			</a>
+		</div>
+
+		<div class="reveal mt-14 flex flex-wrap items-center justify-center gap-3 [transition-delay:320ms]">
+			{
+				platforms.map((p) => (
+					<span class="inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface/50 px-4 py-2 text-xs font-medium text-text-secondary backdrop-blur-xl">
+						<span set:html={PLATFORM_ICONS[p.icon]} class="size-4 text-text-primary" />
+						{p.name}
+					</span>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,44 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const links = [
+	{ href: "#funciones", label: "Funciones" },
+	{ href: "#app", label: "La app" },
+	{ href: "#tecnologia", label: "Tecnología" },
+	{ href: "#descargas", label: "Descargas" },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-50">
+	<div class="mx-auto mt-4 flex max-w-6xl items-center justify-between gap-4 rounded-2xl border border-surface-border bg-surface/70 px-4 py-2.5 backdrop-blur-xl md:px-6">
+		<a href="#" class="flex items-center gap-2.5">
+			<img src="/assets/icon-192.png" alt="FinaControl" class="size-9 rounded-xl" width="36" height="36" />
+			<span class="font-display text-lg font-bold tracking-tight">
+				<span class="text-text-primary">fina</span><span class="text-income">control</span>
+			</span>
+		</a>
+
+		<nav class="hidden items-center gap-8 md:flex">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						class="text-sm font-medium text-text-secondary transition hover:text-text-primary"
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="flex items-center gap-3">
+			<a
+				href="#descargas"
+				class="hidden rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary-variant hover:shadow-[0_0_24px_-6px_var(--primary)] sm:inline-block"
+			>
+				Descargar
+			</a>
+			<ThemeToggle />
+		</div>
+	</div>
+</header>

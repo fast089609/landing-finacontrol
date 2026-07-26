@@ -1,0 +1,28 @@
+---
+interface Props {
+	icon: string;
+	title: string;
+	description: string;
+	accent?: "primary" | "secondary" | "income" | "expense" | "warning";
+	delay?: number;
+}
+
+const { icon, title, description, accent = "primary", delay = 0 } = Astro.props;
+
+const accentClasses: Record<string, string> = {
+	primary: "bg-primary/15 text-primary",
+	secondary: "bg-secondary/15 text-secondary",
+	income: "bg-income/15 text-income",
+	expense: "bg-expense/15 text-expense",
+	warning: "bg-warning/15 text-warning",
+};
+---
+
+<div
+	class="reveal group relative rounded-2xl border border-surface-border bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_50px_-20px_var(--primary)]"
+	style={`transition-delay:${delay}ms`}
+>
+	<div class={`mb-4 grid size-12 place-items-center rounded-xl ${accentClasses[accent]}`} set:html={icon} />
+	<h3 class="mb-2 font-display text-lg font-semibold text-text-primary">{title}</h3>
+	<p class="text-sm leading-relaxed text-text-secondary">{description}</p>
+</div>

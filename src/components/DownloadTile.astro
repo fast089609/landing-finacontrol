@@ -1,0 +1,68 @@
+---
+interface Props {
+	name: string;
+	icon: string;
+	format: string;
+	size?: string;
+	href?: string;
+	active: boolean;
+	delay?: number;
+}
+
+const { name, icon, format, size, href, active, delay = 0 } = Astro.props;
+---
+
+<div
+	class:list={[
+		"reveal group relative flex flex-col items-center rounded-2xl border p-8 text-center backdrop-blur-xl transition duration-300",
+		active
+			? "border-surface-border bg-surface/60 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_25px_60px_-20px_var(--primary)]"
+			: "border-surface-border/60 bg-surface/30 opacity-70",
+	]}
+	style={`transition-delay:${delay}ms`}
+>
+	{
+		!active && (
+			<span class="absolute right-4 top-4 rounded-full bg-warning/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-warning">
+				Próximamente
+			</span>
+		)
+	}
+
+	<div
+		class:list={[
+			"mb-5 grid size-16 place-items-center rounded-2xl",
+			active ? "bg-primary/15 text-primary" : "bg-text-disabled/10 text-text-disabled",
+		]}
+		set:html={icon}
+	/>
+
+	<h3 class="font-display text-lg font-semibold text-text-primary">{name}</h3>
+	<p class="mt-1 text-sm text-text-secondary">
+		{format}
+		{size && ` · ${size}`}
+	</p>
+
+	{
+		active && href ? (
+			<a
+				href={href}
+				download
+				class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-variant hover:shadow-[0_0_24px_-6px_var(--primary)]"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
+					<path d="M12 3v12M19 10l-7 7-7-7" />
+					<path d="M5 21h14" />
+				</svg>
+				Descargar
+			</a>
+		) : (
+			<span
+				aria-disabled="true"
+				class="mt-6 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border border-surface-border px-5 py-2.5 text-sm font-semibold text-text-disabled"
+			>
+				No disponible
+			</span>
+		)
+	}
+</div>
